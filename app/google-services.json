@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "693286330595",
+    "firebase_url": "https://authemailfirebasebasic.firebaseio.com",
+    "project_id": "authemailfirebasebasic",
+    "storage_bucket": "authemailfirebasebasic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693286330595:android:e445f00effc30f3e",
+        "android_client_info": {
+          "package_name": "com.example.swapnil.authemailfirebase_basic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693286330595-6duh1rukoep7fdonad2uttvrenao28i5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swapnil.authemailfirebase_basic",
+            "certificate_hash": "bb84df21ed2fc244f58ceb47bbc36a3e9683a2e6"
+          }
+        },
+        {
+          "client_id": "693286330595-u6tr3rjqjqhcdd0rbmpbs872m57sjq9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOnxnkQPp14GGUSwCuCW35JEY5fdUvzLM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693286330595-u6tr3rjqjqhcdd0rbmpbs872m57sjq9h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
