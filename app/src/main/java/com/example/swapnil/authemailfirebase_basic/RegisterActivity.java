@@ -1,11 +1,18 @@
 package com.example.swapnil.authemailfirebase_basic;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -39,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else {
                     registerNewEmail(registerEmail.getText().toString(),registerPassword1.getText().toString());
+
                 }
             }
         });
@@ -52,6 +60,22 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     void registerNewEmail(String email,String password){
+
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "Done!!!!!!", Toast.LENGTH_SHORT).show();
+                    FirebaseAuth.getInstance().signOut();
+                }else {
+                    FirebaseAuthException e = (FirebaseAuthException )task.getException();
+                    Toast.makeText(RegisterActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(RegisterActivity.this, "Couldn't Complete", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 
