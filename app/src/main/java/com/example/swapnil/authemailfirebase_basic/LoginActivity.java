@@ -131,9 +131,11 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
-                                    FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                                    Toast.makeText(LoginActivity.this, "Welcome "+user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    //TODO: Hot Damn Check This Out
+                                   // FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                                   Toast.makeText(LoginActivity.this, "Welcome ", Toast.LENGTH_SHORT).show();
                                 }
                                 else {
                                     Toast.makeText(LoginActivity.this, "Auth Failed", Toast.LENGTH_SHORT).show();
