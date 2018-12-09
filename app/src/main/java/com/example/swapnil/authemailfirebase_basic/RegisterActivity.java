@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -59,6 +60,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
+    void sendVerficationEmail(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()){
+                                Toast.makeText(RegisterActivity.this, "Mail Send", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(RegisterActivity.this, "Sorry!!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+
     void registerNewEmail(String email,String password){
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -67,6 +86,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, "Done!!!!!!", Toast.LENGTH_SHORT).show();
+                    // Verification
+                    sendVerficationEmail();
+
                     FirebaseAuth.getInstance().signOut();
                 }else {
                     FirebaseAuthException e = (FirebaseAuthException )task.getException();
@@ -76,6 +98,9 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
 
 
 
