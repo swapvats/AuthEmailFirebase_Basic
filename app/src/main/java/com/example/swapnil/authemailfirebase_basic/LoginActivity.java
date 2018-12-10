@@ -95,6 +95,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (user.isEmailVerified()){
                         Log.d(TAG, "onAuthStateChanged: Signed in");
+
+                        Intent intent = new Intent(LoginActivity.this,SignedInActivity.class);
+                        startActivity(intent);
+                        finish();
+
                     }else {
                         Toast.makeText(LoginActivity.this, "Check Mail", Toast.LENGTH_SHORT).show();
                         firebaseAuth.signOut();
