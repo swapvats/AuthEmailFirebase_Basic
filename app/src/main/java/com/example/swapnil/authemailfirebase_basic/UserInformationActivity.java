@@ -67,7 +67,7 @@ public class UserInformationActivity extends AppCompatActivity {
             }
         });
 
-
+        //TODO: CHECK OUT SPARSEARRAY :)
         bubbleSeekBar.setCustomSectionTextArray(new BubbleSeekBar.CustomSectionTextArray() {
             @NonNull
             @Override
