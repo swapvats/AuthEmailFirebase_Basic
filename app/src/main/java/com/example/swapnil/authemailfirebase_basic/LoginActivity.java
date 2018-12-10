@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener mAuthListner;
     
-    TextView register,forgotEmail,resendMail;
+    TextView register, forgotPassword,resendMail;
     EditText email,password;
     Button login;
     ImageView profile_imageView;
@@ -39,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login = findViewById(R.id.login);
         register = findViewById(R.id.registerTextView);
-        forgotEmail = findViewById(R.id.forgotTextView);
+        forgotPassword = findViewById(R.id.forgotTextView);
         resendMail = findViewById(R.id.resendEmailTextView);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -73,6 +72,28 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Fill both", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!email.getText().toString().isEmpty()) {
+                    FirebaseAuth.getInstance().sendPasswordResetEmail(email.getText().toString())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(LoginActivity.this, "Mail Sent Check", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "No user exists like that", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                } else{
+                    Toast.makeText(LoginActivity.this, "Fill in the email then click", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
