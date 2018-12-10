@@ -21,10 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SignedInActivity">
-
-        </activity>
-
+        <activity android:name=".SignedInActivity"></activity>
+        <activity android:name=".UserInformationActivity"></activity>
     </application>
 
 </manifest>

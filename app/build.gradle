@@ -31,5 +31,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    // Long Shadows
+    implementation 'com.github.florent37:longshadow:1.0.1'
+    // Slidder
+    implementation 'com.xw.repo:bubbleseekbar:3.19-lite'
 }
 apply plugin: 'com.google.gms.google-services'

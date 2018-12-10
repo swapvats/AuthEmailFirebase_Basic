@@ -71,6 +71,10 @@ public class SignedInActivity extends AppCompatActivity {
                 Intent intent = new Intent(SignedInActivity.this,LoginActivity.class);
                 startActivity(intent);
             }
+
+            case R.id.aboutMe:{
+                startActivity(new Intent(SignedInActivity.this,UserInformationActivity.class));
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }

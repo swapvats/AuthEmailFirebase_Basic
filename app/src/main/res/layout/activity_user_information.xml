@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".UserInformationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="0dp">
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:id="@+id/seekBar"
+                android:layout_height="match_parent" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="0dp">
+
+            <com.xw.repo.BubbleSeekBar
+                android:id="@+id/bubbleBar"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                app:bsb_bubble_color="#ab3131"
+                app:bsb_bubble_text_color="@color/colorPrimaryDark"
+                app:bsb_max="360.0"
+                app:bsb_min="0.0"
+                app:bsb_section_count="4"
+                app:bsb_second_track_color="#d50000"
+                app:bsb_section_text_position="below_section_mark"
+                app:bsb_show_progress_in_float="true"
+                app:bsb_show_section_mark="true"
+                app:bsb_show_section_text="true"
+                app:bsb_show_thumb_text="true"
+                app:bsb_track_color="#ab3131"
+                app:bsb_progress="0"
+                android:layout_height="match_parent" />
+
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/mmImage"
+            android:layout_weight="4"
+            android:contentDescription="Hye" />
+
+
+
+        <com.github.florent37.longshadow.LongShadow
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:id="@+id/longShadow"
+            app:shadow_angle="140"
+
+            app:shadow_color="#406694"
+            android:background="#55a9ca"
+            android:layout_height="0dp">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:textColor="#212121"
+                    android:text="THIS IS SICK"
+                    android:layout_centerInParent="true"/>
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </com.github.florent37.longshadow.LongShadow>
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
