@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,30 +22,41 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class SignedInActivity extends AppCompatActivity {
 
     ImageView imageView;
+    TextView displayName;
 
 
     private static final String TAG = "Signed In Activity";
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signed_in);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        getSupportActionBar().setTitle("Signed In Activity");
 
-        setUserDetails();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+
 
         imageView = findViewById(R.id.imageView);
+        displayName = findViewById(R.id.displayName);
 
 
+        updateUI(user);
+
+
+    }
+
+    private void updateUI(FirebaseUser user) {
         if (user != null) {
             Glide.with(this)
                     .load(user.getPhotoUrl())
                     .into(imageView);
 
+            displayName.setText(user.getDisplayName());
+
         }
-
-
     }
 
 
@@ -52,6 +64,7 @@ public class SignedInActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkAuthenticationState();
+        updateUI(user);
     }
 
     @Override
@@ -75,6 +88,16 @@ public class SignedInActivity extends AppCompatActivity {
             case R.id.aboutMe:{
                 startActivity(new Intent(SignedInActivity.this,UserInformationActivity.class));
             }
+
+            case R.id.chat_menu:{
+                startActivity(new Intent(SignedInActivity.this,ChatActivity.class));
+            }
+
+            case R.id.menu_profile:{
+                Intent intent = new Intent(SignedInActivity.this,ProfileSettingsActivity.class);
+                //TODO: Pass intent extras here
+                startActivity(intent);
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -95,23 +118,5 @@ public class SignedInActivity extends AppCompatActivity {
     }
 
     //TODO:: Bar bar setup krna jaruri hai kya?
-    void setUserDetails(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user!=null){
-            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
-                    .setDisplayName("Swapnil")
-                    .setPhotoUri(Uri.parse("https://www.pinkvilla.com/files/styles/gallery-preview/public/Deepika%20Padukone%20Hot%20and%20Sexy.png?itok=tzugo3Jk"))
-                    .build();
 
-            user.updateProfile(profileChangeRequest)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Log.d(TAG, "onComplete: Done");
-                            }
-                        }
-                    });
-        }
-    }
 }
