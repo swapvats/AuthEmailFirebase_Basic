@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
-import android.view.View;
 import android.widget.SeekBar;
 
 import com.github.florent37.longshadow.LongShadow;
