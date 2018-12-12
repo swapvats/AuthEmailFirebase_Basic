@@ -1,5 +1,6 @@
 package com.example.swapnil.authemailfirebase_basic;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -78,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    void registerNewEmail(String email,String password){
+    void registerNewEmail(final String email, String password){
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -88,8 +90,19 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Done!!!!!!", Toast.LENGTH_SHORT).show();
                     // Verification
                     sendVerficationEmail();
+                    User user = new User();
+                    user.setName(email.substring(0,email.indexOf("@")));
+                    user.setPhone("1");
+                    user.setProfile_image("");
+                    user.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("users")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            .setValue(user);
 
                     FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
                 }else {
                     FirebaseAuthException e = (FirebaseAuthException )task.getException();
                     Toast.makeText(RegisterActivity.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_SHORT).show();
